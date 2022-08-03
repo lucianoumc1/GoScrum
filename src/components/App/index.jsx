@@ -1,12 +1,15 @@
+import { Routes, Route } from "react-router-dom";
+
 import Header from "../Header";
+import Login from "../views/Login";
 
 function App() {
   return (
     <div>
       <Header />
-      <main className="h-screen pt-20 ">
-        <h1>hello world</h1>
-      </main>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }
