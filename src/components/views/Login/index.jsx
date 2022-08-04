@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import TextField from "../../TextField";
 import PrimaryButton from "../../PrimaryButton";
 import loginValidations from "../../../validations/loginValidations";
@@ -34,6 +35,9 @@ export default function Login() {
         />
 
         <PrimaryButton type="submit" value="Enviar" />
+        <Link to="/register" className="text-sm">
+          Registrarme
+        </Link>
       </form>
     </div>
   );
