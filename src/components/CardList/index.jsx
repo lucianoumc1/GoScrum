@@ -1,8 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import "./CardList.css";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import tasksService from "../../services/tasksServices";
+
+import { getTasks, tasksFailure } from "../../store/actions/tasksActions";
 
 import Card from "../Card";
 import downArrowIcon from "../../assets/icons/down-arrow.png";
@@ -10,15 +14,46 @@ import downArrowIcon from "../../assets/icons/down-arrow.png";
 export default function CardList({ title, tasksList = [], classList = null }) {
   const [openList, setOpenList] = useState(true);
 
+  const {
+    deleteTaskService,
+    editTaskStatusService,
+    editTaskImportanceService,
+  } = tasksService();
+  const { token } = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
+
   const toggleOpenList = () => {
     setOpenList((prev) => !prev);
   };
 
-  const handleDelete = (id) => {};
+  const handleDelete = (id) => {
+    deleteTaskService(id, token)
+      .then(() => {
+        dispatch(getTasks(token));
+        toast.error("Nota eliminada", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((e) => tasksFailure(e.message));
+  };
 
-  const handleEditStatus = (data) => {};
+  const handleEditStatus = (data) => {
+    editTaskStatusService(data, token)
+      .then(() => dispatch(getTasks(token)))
+      .catch((e) => tasksFailure(e.message));
+  };
 
-  const handleEditImportance = (data) => {};
+  const handleEditImportance = (data) => {
+    editTaskImportanceService(data, token)
+      .then(() => dispatch(getTasks(token)))
+      .catch((e) => tasksFailure(e.message));
+  };
 
   return (
     <div

@@ -19,7 +19,6 @@ export default function MyTaskHeader({
       filterByImportance: ev.currentTarget.value,
     });
   };
-
   const handleChangeUserFilter = () => {
     setUserFilter((prev) => !prev);
     setTasksFilters({

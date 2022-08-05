@@ -1,7 +1,11 @@
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
+import { swalError } from "../utils/swalError";
+
 export const registerValidation = () => {
+  const navigate = useNavigate();
   const initialValues = {
     userName: "",
     email: "",
@@ -40,8 +44,30 @@ export const registerValidation = () => {
       .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden"),
   });
 
-  const onSubmit = () => {
-    alert("registrado");
+  const onSubmit = (values) => {
+    const REGISTER_ENDPOINT = "https://goscrum-api.alkemy.org/auth/register";
+    const teamID = !values.teamId ? crypto.randomUUID() : values.teamId;
+    const body = {
+      user: {
+        userName: values.userName,
+        password: values.password,
+        email: values.email,
+        teamID,
+        role: values.rol,
+        continent: values.continent,
+        region: values.region,
+      },
+    };
+
+    fetch(REGISTER_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then(() => navigate("/"))
+      .catch((e) => swalError(e.message));
   };
   const formik = useFormik({
     initialValues,

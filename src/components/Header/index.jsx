@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import logOutIcon from "../../assets/icons/log-out.png";
 
 export default function Header() {
-  const [isLogued, setIsLogued] = useState(true);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isLogued } = useSelector((state) => state.authReducer);
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    dispatch({ type: "auth/logout" });
+    navigate("/login");
+  };
 
   return (
     <header className="w-full h-16 p-4 mb-1 shadow-md flex justify-between items-center fixed z-10">

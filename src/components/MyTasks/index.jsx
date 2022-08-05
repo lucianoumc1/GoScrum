@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getTasks } from "../../store/actions/tasksActions";
 import useFilterTasks from "../../hooks/useFilterTasks";
 import { filterByTitle, filterByImportance } from "../../utils/tasksFilters";
 
@@ -9,6 +11,8 @@ import TaskBoard from "../TaskBoard";
 import OpenModalButton from "../OpenModalButton";
 
 export default function MyTasks() {
+  const dispatch = useDispatch();
+
   const [openModal, setOpenModal] = useState(false);
   const [tasksList, setTasksList] = useState([]);
   const [tasksFilters, setTasksFilters] = useState({
@@ -16,6 +20,19 @@ export default function MyTasks() {
     filterByTitle: "",
     filterByImportance: "",
   });
+
+  const { token } = useSelector((state) => state.authReducer);
+  const { tasks } = useSelector((state) => state.tasksReducer);
+
+  useEffect(() => {
+    dispatch(getTasks(token));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (tasks.length) {
+      setTasksList(tasks);
+    }
+  }, [tasks]);
 
   let filterTaskList = [];
   if (tasksFilters.filterByTitle.length) {
