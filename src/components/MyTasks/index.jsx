@@ -21,11 +21,10 @@ export default function MyTasks() {
     filterByImportance: "",
   });
 
-  const { token } = useSelector((state) => state.authReducer);
   const { tasks } = useSelector((state) => state.tasksReducer);
 
   useEffect(() => {
-    dispatch(getTasks(token));
+    dispatch(getTasks());
   }, [dispatch]);
 
   useEffect(() => {

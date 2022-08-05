@@ -16,13 +16,13 @@ export const tasksFailure = (error) => ({
   payload: error,
 });
 
-export const getTasks = (token) => (dispatch) => {
+export const getTasks = () => (dispatch) => {
   const { tasks } = store.getState().tasksReducer;
 
   if (!tasks.length) {
     dispatch(tasksRequest());
   }
-  getTasksService(token)
+  getTasksService()
     .then((res) => res.json())
     .then((data) => {
       dispatch(tasksSuccess(data.result));
