@@ -1,10 +1,11 @@
 /* eslint-disable react/no-array-index-key */
+import { useSelector } from "react-redux";
+
 import CardList from "../CardList";
 import LoaderTaskBoard from "../LoaderTaskBoard";
 
 export default function TaskBoard({ renderTasks }) {
-  const loading = true;
-  const error = false;
+  const { error, loading } = useSelector((state) => state.tasksReducer);
 
   if (loading) return LoaderTaskBoard();
   if (error) return <div>No se pudieron recuperar la notas</div>;
