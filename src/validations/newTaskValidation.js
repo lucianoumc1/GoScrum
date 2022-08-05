@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { tasksFailure, getTasks } from "../store/actions/tasksActions";
 import tasksService from "../services/tasksServices";
 
@@ -11,7 +11,6 @@ const { createTasksService } = tasksService();
 
 const newTaskValidation = () => {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.authReducer);
 
   const initialValues = {
     title: "",
@@ -28,11 +27,11 @@ const newTaskValidation = () => {
   });
 
   const onSubmit = (values) => {
-    createTasksService(values, token)
+    createTasksService(values)
       .then((response) => response.json())
       .then((data) => {
         if (data.status_code === 200) {
-          dispatch(getTasks(token));
+          dispatch(getTasks());
           toast.success("Nota creada con exito", {
             position: "top-right",
             autoClose: 2000,

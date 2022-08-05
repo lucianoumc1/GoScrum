@@ -3,7 +3,7 @@ import "./CardList.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import tasksService from "../../services/tasksServices";
 
 import { getTasks, tasksFailure } from "../../store/actions/tasksActions";
@@ -19,7 +19,7 @@ export default function CardList({ title, tasksList = [], classList = null }) {
     editTaskStatusService,
     editTaskImportanceService,
   } = tasksService();
-  const { token } = useSelector((state) => state.authReducer);
+
   const dispatch = useDispatch();
 
   const toggleOpenList = () => {
@@ -27,9 +27,9 @@ export default function CardList({ title, tasksList = [], classList = null }) {
   };
 
   const handleDelete = (id) => {
-    deleteTaskService(id, token)
+    deleteTaskService(id)
       .then(() => {
-        dispatch(getTasks(token));
+        dispatch(getTasks());
         toast.error("Nota eliminada", {
           position: "top-right",
           autoClose: 2000,
@@ -44,14 +44,14 @@ export default function CardList({ title, tasksList = [], classList = null }) {
   };
 
   const handleEditStatus = (data) => {
-    editTaskStatusService(data, token)
-      .then(() => dispatch(getTasks(token)))
+    editTaskStatusService(data)
+      .then(() => dispatch(getTasks()))
       .catch((e) => tasksFailure(e.message));
   };
 
   const handleEditImportance = (data) => {
-    editTaskImportanceService(data, token)
-      .then(() => dispatch(getTasks(token)))
+    editTaskImportanceService(data)
+      .then(() => dispatch(getTasks()))
       .catch((e) => tasksFailure(e.message));
   };
 
