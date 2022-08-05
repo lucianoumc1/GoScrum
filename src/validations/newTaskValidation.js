@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { tasksFailure, getTasks } from "../store/actions/tasksActions";
-// import { createTasksService } from "../services/tasksServices";
 import tasksService from "../services/tasksServices";
 
 const { createTasksService } = tasksService();
