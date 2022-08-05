@@ -1,0 +1,10 @@
+.fancy-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+  border-radius: 10px;
+}
+.fancy-scrollbar::-webkit-scrollbar-thumb {
+  width: 14px;
+  background-color: #c4c1c1;
+  border-radius: 10px;
+}
