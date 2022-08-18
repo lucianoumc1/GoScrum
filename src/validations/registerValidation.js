@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -66,7 +67,18 @@ export const registerValidation = () => {
       },
       body: JSON.stringify(body),
     })
-      .then(() => navigate("/"))
+      .then(() => {
+        Swal.fire({
+          title: "¡Registro exitoso!",
+          text: "Ahora puedes iniciar sesión",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+          timer: 2000,
+          timerProgressBar: true,
+        });
+
+        navigate("/");
+      })
       .catch((e) => swalError(e.message));
   };
   const formik = useFormik({
