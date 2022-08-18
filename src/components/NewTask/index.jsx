@@ -8,7 +8,7 @@ import SelectField from "../SelectField";
 import PrimaryButton from "../PrimaryButton";
 
 export default function NewTask({ className = null }) {
-  const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
+  const { handleSubmit, handleChange, values, errors, touched } =
     newTaskValidation();
 
   return (
@@ -23,7 +23,6 @@ export default function NewTask({ className = null }) {
           errors={touched.title && errors.title}
           value={values.title}
           onChange={handleChange}
-          onBlur={handleBlur}
           className="flex-1"
         />
 
@@ -33,7 +32,6 @@ export default function NewTask({ className = null }) {
           errors={touched.status && errors.status}
           value={values.status}
           onChange={handleChange}
-          onBlur={handleBlur}
           className="flex-1"
         >
           <option value="">Seleccionar estado...</option>
@@ -48,7 +46,6 @@ export default function NewTask({ className = null }) {
           errors={touched.importance && errors.importance}
           value={values.importance}
           onChange={handleChange}
-          onBlur={handleBlur}
           options={["HIGH", "MEDIUM", "LOW"]}
           className="flex-1"
         >
@@ -65,7 +62,6 @@ export default function NewTask({ className = null }) {
           errors={touched.description && errors.description}
           value={values.description}
           onChange={handleChange}
-          onBlur={handleBlur}
           className="w-full"
         />
 
