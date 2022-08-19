@@ -4,7 +4,7 @@ export default function SelectField(props) {
       {props.id}
       <select
         {...props}
-        className="p-2 border rounded-lg outline-none text-base w-full focus:shadow-outline-blue"
+        className="p-2 border rounded-lg outline-none text-base w-full focus:border-blue-800"
         id={props.id}
       >
         {props.children}
