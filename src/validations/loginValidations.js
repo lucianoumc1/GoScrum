@@ -26,7 +26,7 @@ const loginValidations = () => {
       .then((data) => {
         if (data.status_code === 200) {
           dispatch(authLogin(data.result));
-          navigate("/");
+          navigate("/GoScrum");
         } else {
           swalError("El nombre de usuario o la clave son incorrectas!");
         }

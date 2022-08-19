@@ -35,7 +35,7 @@ export default function Login() {
         />
 
         <PrimaryButton type="submit" value="Enviar" />
-        <Link to="/register" className="text-sm">
+        <Link to="/GoScrum/register" className="text-sm">
           Registrarme
         </Link>
       </form>

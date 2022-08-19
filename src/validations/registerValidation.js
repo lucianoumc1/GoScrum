@@ -77,7 +77,7 @@ export const registerValidation = () => {
           timerProgressBar: true,
         });
 
-        navigate("/");
+        navigate("/GoScrum");
       })
       .catch((e) => swalError(e.message));
   };

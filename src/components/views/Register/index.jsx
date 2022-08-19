@@ -140,7 +140,7 @@ export default function Register() {
           onBlur={handleBlur}
         />
         <PrimaryButton type="submit" value="Enviar" />
-        <Link to="/login" className="text-sm">
+        <Link to="/GoScrum/login" className="text-sm">
           Ir a Iniciar sesión
         </Link>
       </form>
