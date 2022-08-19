@@ -33,11 +33,3 @@ $ npm run dev
 
 ## License
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-## Next features
-- [ ] Attach media files
-- [ ] Emoji menu
-- [ ] Chat groups
-- [ ] Login with user and password
-- [ ] Edit profile
-
