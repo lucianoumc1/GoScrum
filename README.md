@@ -8,7 +8,7 @@ https://lucianoumc1.github.io/GoScrum/
 ## Getting Started 
 Clone respository:
 ```
-git clone https://github.com/lucianoumc1/todoApp.git
+git clone https://github.com/lucianoumc1/GoScrum.git
 ```
 
 Install the dependencies:
