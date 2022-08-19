@@ -44,16 +44,27 @@ export default function Header() {
       {isLogued && (
         <button
           type="button"
-          className="bg-[#FF452B] h-8 w-8 block text-white font-bold text-lg text-center rounded-full relative cursor-pointer"
+          className="bg-[#FF452B] h-9 w-9 block text-white font-bold text-xl text-center rounded-full relative cursor-pointer"
           onClick={() => setOpenMenu(!openMenu)}
           ref={menuRef}
         >
           {getFirstLetter(userName)}
           <ul
-            className={`absolute shadow-md overflow-hidden w-40 h-max top-full mt-1 right-0 bg-white border font-semibold text-sm mb-2 text-black rounded-lg border-t-0 ${
+            className={`absolute shadow-md overflow-hidden min-w-[180px] h-max top-full mt-1 right-0 bg-white border font-semibold text-sm mb-2 text-black rounded-lg border-t-0 ${
               openMenu ? "block" : "hidden"
             }`}
           >
+            <li>
+              <div className="flex items-center justify-start p-4 ">
+                <button
+                  type="button"
+                  className="bg-[#FF452B] h-8 w-8 mr-2 block text-white font-bold text-lg text-center rounded-full relative cursor-pointer"
+                >
+                  {getFirstLetter(userName)}
+                </button>
+                <span className="">{userName}</span>
+              </div>
+            </li>
             <li>
               <a
                 className="w-full py-2 border-[#FF452B] outline-none bg-[#FF452B] text-white text-sm hover:bg-white hover:text-[#FF452B] hover:border-[#FF452B]  transition-hover duration-200"
