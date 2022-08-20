@@ -1,6 +1,6 @@
 # GoScrum
 ## About
-GoScrum is an App similar to Trello, where users can register and create new teams to work under the scrum methodology.
+GoScrum is an similar App to Trello, where users can register and create new teams to work under the scrum methodology.
 ### State
 ``` First Version ```
 
