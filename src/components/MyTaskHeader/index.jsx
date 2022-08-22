@@ -19,14 +19,22 @@ export default function MyTaskHeader({
       filterByImportance: ev.currentTarget.value,
     });
   };
-  const handleChangeUserFilter = () => {
-    setUserFilter((prev) => !prev);
+
+  const handleDisabledUserFilter = () => {
+    setUserFilter(false);
     setTasksFilters({
       ...tasksFilters,
-      filterByCurrentUser: userFilter,
+      filterByCurrentUser: false,
     });
   };
 
+  const handleEnableUserFilter = () => {
+    setUserFilter(true);
+    setTasksFilters({
+      ...tasksFilters,
+      filterByCurrentUser: true,
+    });
+  };
   return (
     <div className={`mb-2 w-full ${className}`}>
       <h3 className="text-2xl font-semibold mb-2">Mis tareas</h3>
@@ -39,7 +47,7 @@ export default function MyTaskHeader({
               name="tasks"
               className="mr-2 "
               checked={!userFilter}
-              onChange={handleChangeUserFilter}
+              onChange={handleDisabledUserFilter}
             />
             Todas
           </label>
@@ -50,7 +58,7 @@ export default function MyTaskHeader({
               name="tasks"
               className="mr-2"
               checked={userFilter}
-              onChange={handleChangeUserFilter}
+              onChange={handleEnableUserFilter}
             />
             Mis tareas
           </label>
