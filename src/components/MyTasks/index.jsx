@@ -16,7 +16,7 @@ export default function MyTasks() {
   const [openModal, setOpenModal] = useState(false);
   const [tasksList, setTasksList] = useState([]);
   const [tasksFilters, setTasksFilters] = useState({
-    filterByCurrentUser: true,
+    filterByCurrentUser: false,
     filterByTitle: "",
     filterByImportance: "",
   });
@@ -24,8 +24,8 @@ export default function MyTasks() {
   const { tasks } = useSelector((state) => state.tasksReducer);
 
   useEffect(() => {
-    dispatch(getTasks());
-  }, [dispatch]);
+    dispatch(getTasks(tasksFilters.filterByCurrentUser));
+  }, [dispatch, tasksFilters]);
 
   useEffect(() => {
     if (tasks.length) {

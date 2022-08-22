@@ -4,10 +4,10 @@ import store from "../store/store";
 export default function tasksServices() {
   const TASKS_ENDPOINT = "https://goscrum-api.alkemy.org/task/";
 
-  const getTasksService = () => {
+  const getTasksService = (path) => {
     const { token } = store.getState().authReducer;
 
-    return fetch(TASKS_ENDPOINT, {
+    return fetch(`${TASKS_ENDPOINT}${path ? "me" : ""}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
