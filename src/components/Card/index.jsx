@@ -1,4 +1,35 @@
+import { useState } from "react";
 import DeleteButton from "../DeleteButton";
+
+const priorityList = {
+  LOW: {
+    name: "Baja",
+    color: "bg-green-500",
+  },
+  MEDIUM: {
+    name: "Media",
+    color: "bg-orange-500",
+  },
+  HIGH: {
+    name: "Alta",
+    color: "bg-red-500",
+  },
+};
+
+const statusList = {
+  NEW: {
+    name: "Nueva",
+    color: "bg-blue-500",
+  },
+  "IN PROGRESS": {
+    name: "En proceso",
+    color: "bg-orange-500",
+  },
+  FINISHED: {
+    name: "Finalizada",
+    color: "bg-green-500",
+  },
+};
 
 export default function Card({
   data,
@@ -13,42 +44,15 @@ export default function Card({
   handleEditStatus,
   handleEditImportance,
 }) {
-  const priorityList = {
-    LOW: {
-      name: "Baja",
-      color: "bg-green-500",
-    },
-    MEDIUM: {
-      name: "Media",
-      color: "bg-orange-500",
-    },
-    HIGH: {
-      name: "Alta",
-      color: "bg-red-500",
-    },
-  };
-
-  const statusList = {
-    NEW: {
-      name: "Nueva",
-      color: "bg-blue-500",
-    },
-    "IN PROGRESS": {
-      name: "En proceso",
-      color: "bg-orange-500",
-    },
-    FINISHED: {
-      name: "Finalizada",
-      color: "bg-green-500",
-    },
-  };
-
+  const [showMore, setShowMore] = useState(false);
   const datetime = new Date(date).toLocaleString();
 
-  const limitDescription = (description) => {
-    if (description.length >= 200) {
-      const newDescription = description.slice(0, 197).concat("...");
-      return newDescription;
+  const limitDescription = (text) => {
+    let description = { text, addButton: false };
+    if (text.length >= 200) {
+      const limitedText = text.slice(0, 197).concat("...");
+      description = { text: limitedText, addButton: true };
+      return description;
     }
     return description;
   };
@@ -75,7 +79,18 @@ export default function Card({
       >
         {statusList[status].name}
       </button>
-      <p className="mt-2 text-sm break-words">{limitDescription(desc)}</p>
+      <p className="mt-2 text-sm break-words">
+        {(showMore && desc) || limitDescription(desc).text}
+        {limitDescription(desc).addButton && (
+          <button
+            type="button"
+            className="text-blue-700 font-semibold pl-2"
+            onClick={() => setShowMore((prev) => !prev)}
+          >
+            {showMore ? "Ver menos" : "Ver más"}
+          </button>
+        )}
+      </p>
     </div>
   );
 }
