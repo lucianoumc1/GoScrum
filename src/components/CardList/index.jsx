@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import "./CardList.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import tasksService from "../../services/tasksServices";

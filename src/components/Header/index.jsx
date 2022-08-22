@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -32,6 +33,15 @@ export default function Header() {
 
   const clickToCopy = () => {
     navigator.clipboard.writeText(teamID);
+    toast.success("Team ID copiado al portapapeles", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const getFirstLetter = (str) => str.charAt(0).toUpperCase();
