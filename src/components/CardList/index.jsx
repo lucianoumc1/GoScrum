@@ -94,7 +94,6 @@ export default function CardList({ title, tasksList = [], classList = null }) {
           </li>
         ))}
       </ul>
-      <ToastContainer />
     </div>
   );
 }
