@@ -6,7 +6,7 @@ import { swalError } from "../../../utils/swalError";
 import TextField from "../../TextField";
 import PrimaryButton from "../../PrimaryButton";
 import SelectField from "../../SelectField";
-import fetchAuthData from "../../../utils/authData";
+import { fetchAuthData } from "../../../services/authServices";
 import Switch from "../../Switch";
 
 export default function Register() {

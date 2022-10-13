@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { authRegisterService } from "../services/authServices";
 
 import { swalError } from "../utils/swalError";
 
@@ -46,38 +47,22 @@ export const registerValidation = () => {
   });
 
   const onSubmit = (values) => {
-    const REGISTER_ENDPOINT = "https://goscrum-api.alkemy.org/auth/register";
-    const teamID = !values.teamId ? crypto.randomUUID() : values.teamId;
-    const body = {
-      user: {
-        userName: values.userName,
-        password: values.password,
-        email: values.email,
-        teamID,
-        role: values.rol,
-        continent: values.continent,
-        region: values.region,
-      },
-    };
+    authRegisterService(values)
+      .then((data) => {
+        if (data.status !== 201) {
+          swalError("El nombre de usuario ya esta en uso");
+        } else {
+          Swal.fire({
+            title: "¡Registro exitoso!",
+            text: "Ahora puedes iniciar sesión",
+            icon: "success",
+            confirmButtonText: "Aceptar",
+            timer: 2000,
+            timerProgressBar: true,
+          });
 
-    fetch(REGISTER_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    })
-      .then(() => {
-        Swal.fire({
-          title: "¡Registro exitoso!",
-          text: "Ahora puedes iniciar sesión",
-          icon: "success",
-          confirmButtonText: "Aceptar",
-          timer: 2000,
-          timerProgressBar: true,
-        });
-
-        navigate("/GoScrum");
+          navigate("/GoScrum");
+        }
       })
       .catch((e) => swalError(e.message));
   };
