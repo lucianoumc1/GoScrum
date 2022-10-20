@@ -76,13 +76,14 @@ export default function CardList({ title, tasksList = [], classList = null }) {
       <ul className="w-full h-full overflow-y-auto pb-2 xl:pb-6 fancy-scrollbar pr-2">
         {!tasksList.length && "No hay tareas por el momento..."}
         {tasksList.map((task) => (
-          <li key={task._id}>
+          <li key={task.id}>
             <Card
               data={task}
-              id={task._id}
+              id={task.id}
               title={task.title}
               date={task.createdAt}
-              author={task.user.userName}
+              // author={task.user.userName}
+              author="Jhon Doe"
               status={task.status}
               importance={task.importance}
               desc={task.description}

@@ -30,7 +30,7 @@ const newTaskValidation = () => {
     createTasksService(values)
       .then((response) => response.json())
       .then((data) => {
-        if (data.status_code === 200) {
+        if (data.statusCode === 200) {
           dispatch(getTasks());
           toast.success("Nota creada con exito", {
             position: "top-right",

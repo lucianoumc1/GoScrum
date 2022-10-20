@@ -7,7 +7,6 @@ export default function tasksServices() {
 
   const getTasksService = (path) => {
     const { token } = store.getState().authReducer;
-
     return fetch(`${TASKS_ENDPOINT}${path ? "me" : ""}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -26,7 +25,7 @@ export default function tasksServices() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        task: newTask,
+        ...newTask,
       }),
     });
   };
@@ -53,19 +52,17 @@ export default function tasksServices() {
     const nextStatusIndex =
       statusList.length - 1 <= currentStatusIndex ? 0 : currentStatusIndex + 1;
 
-    return fetch(`${TASKS_ENDPOINT}${data._id}`, {
+    return fetch(`${TASKS_ENDPOINT}${data.id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        task: {
-          title: data.title,
-          importance: data.importance,
-          status: statusList[nextStatusIndex],
-          description: data.description,
-        },
+        title: data.title,
+        importance: data.importance,
+        status: statusList[nextStatusIndex],
+        description: data.description,
       }),
     });
   };
@@ -82,19 +79,17 @@ export default function tasksServices() {
         ? 0
         : currentImportanceIndex + 1;
 
-    return fetch(`${TASKS_ENDPOINT}${data._id}`, {
+    return fetch(`${TASKS_ENDPOINT}${data.id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        task: {
-          title: data.title,
-          importance: importanceList[nextImportanceIndex],
-          status: data.status,
-          description: data.description,
-        },
+        title: data.title,
+        importance: importanceList[nextImportanceIndex],
+        status: data.status,
+        description: data.description,
       }),
     });
   };
