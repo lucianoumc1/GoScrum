@@ -5,10 +5,10 @@ const initialState = {
   currentUser: {
     userName: "",
     email: "",
-    role: "",
+    rol: "",
     continent: "",
     region: "",
-    teamID: "",
+    teamId: "",
   },
 };
 
@@ -22,10 +22,10 @@ export const authReducer = (state = initialState, { type, payload }) => {
         currentUser: {
           userName: payload.user.userName,
           email: payload.user.email,
-          role: payload.user.role,
+          rol: payload.user.rol,
           continent: payload.user.continent,
           region: payload.user.region,
-          teamID: payload.user.teamID,
+          teamId: payload.user.teamId,
         },
       };
     }
@@ -37,10 +37,10 @@ export const authReducer = (state = initialState, { type, payload }) => {
         currentUser: {
           userName: "",
           email: "",
-          role: "",
+          rol: "",
           continent: "",
           region: "",
-          teamID: "",
+          teamId: "",
         },
       };
     }

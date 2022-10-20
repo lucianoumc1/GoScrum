@@ -2,7 +2,8 @@
 import store from "../store/store";
 
 export default function tasksServices() {
-  const TASKS_ENDPOINT = "https://goscrum-api.alkemy.org/task/";
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const TASKS_ENDPOINT = `${apiUrl}/task/`;
 
   const getTasksService = (path) => {
     const { token } = store.getState().authReducer;

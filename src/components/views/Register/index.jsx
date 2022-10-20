@@ -14,11 +14,9 @@ export default function Register() {
 
   useEffect(() => {
     fetchAuthData()
-      .then((res) => {
-        setDataAuth(res);
-      })
+      .then(setDataAuth)
       .catch(() => {
-        swalError("El nombre de usuario o la clave son incorrectas!");
+        swalError("Error al comunicarse con el servidor.");
       });
   }, []);
 
@@ -38,6 +36,15 @@ export default function Register() {
           name="userName"
           errors={touched.userName && errors.userName}
           value={values.userName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <TextField
+          id="Nombre completo"
+          type="text"
+          name="name"
+          errors={touched.name && errors.name}
+          value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
         />

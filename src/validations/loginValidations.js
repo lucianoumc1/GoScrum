@@ -24,7 +24,7 @@ const loginValidations = () => {
     authLoginService(values)
       .then((res) => res.json())
       .then((data) => {
-        if (data.status_code === 200) {
+        if (data.statusCode === 200) {
           dispatch(authLogin(data.result));
           navigate("/GoScrum");
         } else {

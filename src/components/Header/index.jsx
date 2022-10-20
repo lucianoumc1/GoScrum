@@ -10,7 +10,7 @@ export default function Header() {
   const navigate = useNavigate();
   const {
     isLogued,
-    currentUser: { userName, teamID },
+    currentUser: { userName, teamId },
   } = useSelector((state) => state.authReducer);
 
   const handleLogout = () => {
@@ -32,7 +32,7 @@ export default function Header() {
   }, []);
 
   const clickToCopy = () => {
-    navigator.clipboard.writeText(teamID);
+    navigator.clipboard.writeText(teamId);
     toast.success("Team ID copiado al portapapeles", {
       position: "top-right",
       autoClose: 2000,

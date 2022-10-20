@@ -1,4 +1,5 @@
-const AUTH_ENDPOINT = "https://goscrum-api.alkemy.org/auth";
+const apiUrl = import.meta.env.VITE_API_URL;
+const AUTH_ENDPOINT = `${apiUrl}/auth`;
 
 export const authLoginService = (userCredentials) => {
   const { userName, password } = userCredentials;
@@ -12,14 +13,15 @@ export const authLoginService = (userCredentials) => {
 };
 
 export const authRegisterService = (values) => {
-  const teamID = !values.teamId ? crypto.randomUUID() : values.teamId;
+  const teamId = !values.teamId ? crypto.randomUUID() : values.teamId;
   const body = {
+    userName: values.userName,
+    password: values.password,
     user: {
-      userName: values.userName,
-      password: values.password,
+      name: values.name,
       email: values.email,
-      teamID,
-      role: values.rol,
+      teamId,
+      rol: values.rol,
       continent: values.continent,
       region: values.region,
     },
@@ -35,5 +37,5 @@ export const authRegisterService = (values) => {
 
 export const fetchAuthData = async () => {
   const data = await (await fetch(`${AUTH_ENDPOINT}/data`)).json();
-  return data.result;
+  return data;
 };

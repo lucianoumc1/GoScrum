@@ -10,6 +10,7 @@ export const registerValidation = () => {
   const navigate = useNavigate();
   const initialValues = {
     userName: "",
+    name: "",
     email: "",
     switch: false,
     teamId: "",
@@ -24,6 +25,7 @@ export const registerValidation = () => {
     userName: Yup.string()
       .required("Campo obligatorio")
       .min(3, "El nombre debe tener al menos 3 caracteres"),
+    name: Yup.string().required("Campo obligatorio"),
     email: Yup.string()
       .email("El formato no es valido")
       .required("Campo obligatorio"),
