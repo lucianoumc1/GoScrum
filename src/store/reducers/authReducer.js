@@ -4,6 +4,7 @@ const initialState = {
   token: "",
   currentUser: {
     userName: "",
+    name: "",
     email: "",
     rol: "",
     continent: "",
@@ -21,6 +22,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
         token: payload.token,
         currentUser: {
           userName: payload.user.userName,
+          name: payload.user.name,
           email: payload.user.email,
           rol: payload.user.rol,
           continent: payload.user.continent,

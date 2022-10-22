@@ -10,7 +10,7 @@ export default function Header() {
   const navigate = useNavigate();
   const {
     isLogued,
-    currentUser: { userName, teamId },
+    currentUser: { name, teamId },
   } = useSelector((state) => state.authReducer);
 
   const handleLogout = () => {
@@ -58,21 +58,26 @@ export default function Header() {
           onClick={() => setOpenMenu(!openMenu)}
           ref={menuRef}
         >
-          {getFirstLetter(userName)}
+          {getFirstLetter(name)}
           <ul
             className={`absolute shadow-md overflow-hidden min-w-[180px] h-max top-full mt-1 right-0 bg-white border font-semibold text-sm mb-2 text-black rounded-lg border-t-0 ${
               openMenu ? "block" : "hidden"
             }`}
           >
             <li>
-              <div className="flex items-center justify-start p-4 ">
+              <div className="flex items-center justify-start p-4 whitespace-nowrap flex-wrap">
                 <button
                   type="button"
                   className="bg-[#FF452B] h-8 w-8 mr-2 block text-white font-bold text-lg text-center rounded-full relative cursor-pointer"
                 >
-                  {getFirstLetter(userName)}
+                  {getFirstLetter(name)}
                 </button>
-                <span className="">{userName}</span>
+                <span
+                  title={name}
+                  className="flex-1 overflow-hidden text-ellipsis text-sm"
+                >
+                  {name}
+                </span>
               </div>
             </li>
             <li>

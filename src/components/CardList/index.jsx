@@ -82,8 +82,7 @@ export default function CardList({ title, tasksList = [], classList = null }) {
               id={task.id}
               title={task.title}
               date={task.createdAt}
-              // author={task.user.userName}
-              author="Jhon Doe"
+              author={task.created_by.name}
               status={task.status}
               importance={task.importance}
               desc={task.description}
