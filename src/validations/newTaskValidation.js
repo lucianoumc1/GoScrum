@@ -1,11 +1,12 @@
 /* eslint-disable no-use-before-define */
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { tasksFailure, getTasks } from "../store/actions/tasksActions";
 import tasksService from "../services/tasksServices";
+import { toastSuccessMessage } from "../utils/toastMessages";
 
 const { createTasksService } = tasksService();
 
@@ -32,15 +33,7 @@ const newTaskValidation = () => {
       .then((data) => {
         if (data.statusCode === 200) {
           dispatch(getTasks());
-          toast.success("Nota creada con exito", {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toastSuccessMessage("Nota creada con exito");
           formik.resetForm();
         }
       })

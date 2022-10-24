@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 import "./CardList.css";
-import { toast } from "react-toastify";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import tasksService from "../../services/tasksServices";
@@ -9,6 +8,10 @@ import { getTasks, tasksFailure } from "../../store/actions/tasksActions";
 
 import Card from "../Card";
 import downArrowIcon from "../../assets/icons/down-arrow.png";
+import {
+  toastSuccessMessage,
+  toastErrorMessage,
+} from "../../utils/toastMessages";
 
 export default function CardList({ title, tasksList = [], classList = null }) {
   const [openList, setOpenList] = useState(true);
@@ -27,30 +30,38 @@ export default function CardList({ title, tasksList = [], classList = null }) {
 
   const handleDelete = (id) => {
     deleteTaskService(id)
-      .then(() => {
+      .then((res) => {
+        if (res.status === 401) {
+          toastErrorMessage("Permisos insuficientes");
+          return;
+        }
+        toastSuccessMessage("Nota eliminada");
         dispatch(getTasks());
-        toast.error("Nota eliminada", {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
       })
       .catch((e) => tasksFailure(e.message));
   };
 
   const handleEditStatus = (data) => {
     editTaskStatusService(data)
-      .then(() => dispatch(getTasks()))
+      .then((res) => {
+        if (res.status === 401) {
+          toastErrorMessage("Permisos insuficientes");
+          return;
+        }
+        dispatch(getTasks());
+      })
       .catch((e) => tasksFailure(e.message));
   };
 
   const handleEditImportance = (data) => {
     editTaskImportanceService(data)
-      .then(() => dispatch(getTasks()))
+      .then((res) => {
+        if (res.status === 401) {
+          toastErrorMessage("Permisos insuficientes");
+          return;
+        }
+        dispatch(getTasks());
+      })
       .catch((e) => tasksFailure(e.message));
   };
 

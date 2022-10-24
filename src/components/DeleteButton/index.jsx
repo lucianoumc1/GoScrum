@@ -4,7 +4,7 @@ export default function DeleteButton({ handleClick }) {
   return (
     <button
       type="button"
-      className="bg-[#FF452B] rounded-full w-4 h-4 flex items-center justify-center"
+      className="bg-[#FF452B] rounded-full w-4"
       onClick={handleClick}
     >
       <img
