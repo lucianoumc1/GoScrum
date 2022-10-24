@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toastSuccessMessage } from "../../utils/toastMessages";
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -33,15 +33,7 @@ export default function Header() {
 
   const clickToCopy = () => {
     navigator.clipboard.writeText(teamId);
-    toast.success("Team ID copiado al portapapeles", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toastSuccessMessage("Team ID copiado al portapapeles");
   };
 
   const getFirstLetter = (str) => str.charAt(0).toUpperCase();
@@ -92,12 +84,12 @@ export default function Header() {
               </a>
             </li>
             <li className="py-2 hover:bg-[#e5e5e571]">
-              <button type="button" onClick={clickToCopy}>
+              <button type="button" onClick={clickToCopy} className="w-full">
                 Copiar ID Team
               </button>
             </li>
             <li className="py-2 hover:bg-[#e5e5e571]">
-              <button onClick={handleLogout} type="button">
+              <button onClick={handleLogout} type="button" className="w-full">
                 Cerrar sesión
               </button>
             </li>
