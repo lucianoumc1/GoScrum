@@ -5,7 +5,7 @@ export default function ProtectedRoute({ children }) {
   const { isLogued } = useSelector((state) => state.authReducer);
 
   if (!isLogued) {
-    return <Navigate to="/GoScrum/login" />;
+    return <Navigate to="/login" />;
   }
   return children;
 }

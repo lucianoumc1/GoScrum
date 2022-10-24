@@ -15,7 +15,7 @@ export default function Header() {
 
   const handleLogout = () => {
     dispatch({ type: "auth/logout" });
-    navigate("/GoScrum/login");
+    navigate("/login");
   };
 
   const handleClickOutside = (e) => {

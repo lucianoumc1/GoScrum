@@ -11,15 +11,15 @@ function App() {
       <Header />
       <Routes>
         <Route
-          path="/GoScrum"
+          path="/"
           element={
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
           }
         />
-        <Route path="/GoScrum/login" element={<Login />} />
-        <Route path="/GoScrum/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
