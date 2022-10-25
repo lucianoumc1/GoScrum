@@ -2,19 +2,21 @@
 ## About
 GoScrum is an similar App to Trello, where users can register and create new teams to work under the scrum methodology.
 ### State
-``` First Version ```
-
-``` Desktop Version ```
+``` Desktop ```
 
 ![print 1](https://user-images.githubusercontent.com/78552425/185720897-a33943fc-3848-4646-8fe2-7cefb9163d09.png)
 
-``` Mobile Version ```
+``` Mobile ```
 
 ![print 2](https://user-images.githubusercontent.com/78552425/185721062-a5d43a75-000a-4bb2-936d-4ee2eeaa95e9.png)
 
 
 ## Link to production
-https://lucianoumc1.github.io/GoScrum/
+[https://lucianoumc1.github.io/GoScrum/](https://goscrum-three.vercel.app/)
+
+## Link to Backend
+[https://github.com/lucianoumc1/GoScrum-backend](https://github.com/lucianoumc1/GoScrum-backend)
+
 ## Getting Started 
 Clone respository:
 ```
