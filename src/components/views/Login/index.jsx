@@ -8,7 +8,7 @@ export default function Login() {
     loginValidations();
 
   return (
-    <div className="h-screen pt-20 flex items-center bg-white sm:bg-[#f3f3f3]">
+    <div className="h-max min-h-screen px-20 flex items-center bg-white sm:bg-[#f3f3f3]">
       <form
         onSubmit={handleSubmit}
         className="max-w-lg min-w-[310px] w-full m-auto p-6 flex flex-col gap-3 rounded-lg bg-white sm:w-3/5 sm:border sm:shadow-md"

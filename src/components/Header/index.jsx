@@ -39,7 +39,7 @@ export default function Header() {
   const getFirstLetter = (str) => str.charAt(0).toUpperCase();
 
   return (
-    <header className="w-full h-16 p-6 mb-1 shadow-md flex justify-between items-center fixed z-10">
+    <header className="w-full h-16 p-6 mb-1 bg-[#ffffffdc] shadow-md flex justify-between items-center fixed z-10">
       <div className="text-xl font-semibold flex items-center">
         <span className="text-[#FF452B] text-3xl font-bold ">Go</span>Scrum
       </div>
